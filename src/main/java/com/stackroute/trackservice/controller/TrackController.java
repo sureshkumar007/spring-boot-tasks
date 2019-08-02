@@ -2,6 +2,8 @@ package com.stackroute.trackservice.controller;
 
 
 import com.stackroute.trackservice.domain.Track;
+import com.stackroute.trackservice.exceptions.TrackAlreadyExistsException;
+import com.stackroute.trackservice.exceptions.TrackNotFoundException;
 import com.stackroute.trackservice.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,50 +28,83 @@ public class TrackController {
 
     @PostMapping("track")
     //Used to map the request and requestmethod into specific method.
-    public ResponseEntity<?> saveTrack(@RequestBody Track track){
-        //@RequestBody --> Used to convert the request body into the domain object.
-        //Returns the Track object as the response for the given request.
-        Track savedTrack = trackService.saveTrack(track);
-        return new ResponseEntity<>(savedTrack, HttpStatus.OK);
+    public ResponseEntity<?> saveTrack(@RequestBody Track track)
+    {
+        try {
+            Track savedTrack = trackService.saveTrack(track);
+            return new ResponseEntity<>(savedTrack, HttpStatus.OK);
+        }catch (TrackAlreadyExistsException e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @GetMapping("track/{id}")
-    public ResponseEntity<?> getTrackById(@PathVariable int id){
-        //Used to extract the data from query parameter.
-        //Returns the User object as the response for the given request.
-        Track retrievedTrack = trackService.getTrackById(id);
-        return new ResponseEntity<>(retrievedTrack, HttpStatus.OK);
+    public ResponseEntity<?> getTrackById(@PathVariable int id) {
+        try {
+            //Used to extract the data from query parameter.
+            //Returns the User object as the response for the given request.
+            Track retrievedTrack = trackService.getTrackById(id);
+            return new ResponseEntity<>(retrievedTrack, HttpStatus.OK);
+        } catch (TrackNotFoundException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.OK);
+        }
     }
 
     @GetMapping("track")
     public ResponseEntity<?> getAllTrack(){
-        List<Track> trackList = trackService.getAllTracks();
-        return new ResponseEntity<>(trackList, HttpStatus.OK);
+        try{
+            List<Track> trackList = trackService.getAllTracks();
+            return new ResponseEntity<>(trackList, HttpStatus.OK);
+        }
+        catch (Exception exc)
+        {
+            return new ResponseEntity<>(exc.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @DeleteMapping("track/{id}")
-    public ResponseEntity<?> deleteTrackById(@PathVariable("id") int id) {
-        //Used to extract the data from query parameter.
-        //Returns the User object as the response for the given request.
-        Optional<Track> optionalTrack = trackService.deleteTrackById(id);
-        if (optionalTrack.isPresent()){
-            return new ResponseEntity<Track>(optionalTrack.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Unmatched id", HttpStatus.OK);
+    public ResponseEntity<?> deleteTrackById(@PathVariable("id") int id)
+    {
+       try {
+           Optional<Track> optionalTrack = trackService.deleteTrackById(id);
+           return new ResponseEntity<>(optionalTrack, HttpStatus.OK);
+       }
+       catch (TrackNotFoundException tr)
+       {
+           return new ResponseEntity<>(tr.getMessage(),HttpStatus.OK);
+       }
+
     }
 
     @PutMapping("track/{id}")
-    public ResponseEntity<?> updateTrackById(@PathVariable int id, @RequestBody Track track){
-        Track updatedTrack = trackService.updateTrack(id, track);
-        return new ResponseEntity<>(updatedTrack, HttpStatus.OK);
+    public ResponseEntity<?> updateTrackById(@PathVariable int id, @RequestBody Track track)
+    {
+        try{
+            Track updatedTrack = trackService.updateTrack(id, track);
+            return new ResponseEntity<>(updatedTrack, HttpStatus.OK);
+        }
+        catch (TrackNotFoundException tr)
+        {
+            return new ResponseEntity<>(tr.getMessage(),HttpStatus.OK);
+        }
+
 
     }
 
     @GetMapping("tracks/{name}")
     public ResponseEntity<?> getByName(@PathVariable String name)
     {
-        List<Track> track=trackService.getByName(name);
-        return new ResponseEntity<>(track,HttpStatus.OK);
+        try {
+            List<Track> track=trackService.getByName(name);
+            return new ResponseEntity<>(track,HttpStatus.OK);
+        }
+        catch (TrackNotFoundException tr)
+        {
+            return new ResponseEntity<>(tr.getMessage(),HttpStatus.OK);
+        }
+
     }
 }
 
