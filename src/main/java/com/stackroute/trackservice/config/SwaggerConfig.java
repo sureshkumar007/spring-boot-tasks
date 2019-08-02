@@ -12,9 +12,16 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+    /*
+    bean is used to create a object .
+    here docket is one type of saas and paas
+     */
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+                /*
+                here the we assign the path of the class....
+                 */
                 .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.trackservice.controller"))
                 .paths(regex("/api/v1/.*"))
                 .build();
