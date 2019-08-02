@@ -12,7 +12,8 @@ import java.util.Optional;
 
 @Service
 //Used to mark a class as the service provider.
-public class TrackServiceImpl implements TrackService {
+public class TrackServiceImpl implements TrackService
+{
     private TrackRepository trackRepository;
 
     @Autowired
@@ -56,5 +57,13 @@ public class TrackServiceImpl implements TrackService {
         track.setName(track.getName());
         return trackRepository.save(track);
     }
+
+    @Override
+    public List<Track> getByName(String name)
+    {
+        List<Track> trackByName=trackRepository.findByTrackName(name);
+        return trackByName;
+    }
+
 }
 
