@@ -3,6 +3,7 @@ package com.stackroute.trackservice.seedata;
 import com.stackroute.trackservice.domain.Track;
 import com.stackroute.trackservice.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ public class CommandLineRunnerSeedata implements CommandLineRunner
 
     private TrackService trackService;
     @Autowired
-    public CommandLineRunnerSeedata(TrackService trackService1)
+    public CommandLineRunnerSeedata(@Qualifier("trackService") TrackService trackService1)
     {
         this.trackService=trackService1;
     }
