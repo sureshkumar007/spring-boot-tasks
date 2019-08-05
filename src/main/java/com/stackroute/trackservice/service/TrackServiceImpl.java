@@ -7,12 +7,14 @@ import com.stackroute.trackservice.exceptions.TrackNotFoundException;
 import com.stackroute.trackservice.repository.TrackRepository;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Profile("actual")
 //Used to mark a class as the service provider.
 public class TrackServiceImpl implements TrackService
 {
