@@ -1,13 +1,11 @@
 package com.stackroute.trackservice.domain;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
-public class Track
-{
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+@Data
+@Document(collection="track")
+public class Track {
     @Id
     private int id;
     private String name;
@@ -52,6 +50,6 @@ public class Track
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", comments='" + comments + '\'' +
-                '}';
+                '}' ;
     }
 }
