@@ -51,7 +51,7 @@ public class TrackControllerTest {
             track = new Track();
             track.setId(26);
             track.setComments("Jonny");
-            track.setName("hellllllllllo");
+            track.setName("dj");
 
             list = new ArrayList();
 
@@ -98,6 +98,27 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
+
+    @Test
+    public void givenIdUpdateTrackinTrack() throws TrackNotFoundException, Exception
+    {
+        when(trackService.getTrackById(anyInt())).thenReturn(track);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track/26")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+
+    @Test
+    public void givenIdgetByName() throws TrackNotFoundException, Exception
+    {
+        when(trackService.getTrackById(anyInt())).thenReturn(track);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track/")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andDo(MockMvcResultHandlers.print());
+    }
 
 
 //        @Test
