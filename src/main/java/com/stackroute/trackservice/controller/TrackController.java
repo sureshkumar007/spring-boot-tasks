@@ -32,7 +32,7 @@ public class TrackController {
     {
 
             Track savedTrack = trackService.saveTrack(track);
-            return new ResponseEntity<>(savedTrack, HttpStatus.OK);
+            return new ResponseEntity<>(savedTrack, HttpStatus.CREATED);
 
 
         }
@@ -45,7 +45,7 @@ public class TrackController {
             //Used to extract the data from query parameter.
             //Returns the User object as the response for the given request.
             Track retrievedTrack = trackService.getTrackById(id);
-            return new ResponseEntity<>(retrievedTrack, HttpStatus.OK);
+            return new ResponseEntity<>(retrievedTrack, HttpStatus.FOUND);
         }
 
 
@@ -53,7 +53,7 @@ public class TrackController {
     public ResponseEntity<?> getAllTrack() throws Exception{
 
             List<Track> trackList = trackService.getAllTracks();
-            return new ResponseEntity<>(trackList, HttpStatus.OK);
+            return new ResponseEntity<>(trackList, HttpStatus.FOUND);
 
 
 
