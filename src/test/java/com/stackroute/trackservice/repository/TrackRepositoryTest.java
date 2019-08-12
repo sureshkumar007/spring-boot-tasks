@@ -38,6 +38,8 @@ public class TrackRepositoryTest {
     private TrackRepository trackRepository;
    private Track track;
 
+
+   //Before Starting of the test case
     @Before
     public void setUp() {
         track = new Track();
@@ -57,7 +59,7 @@ public class TrackRepositoryTest {
 
 
     @Test
-    public void testSaveUser()
+    public void givenMethodSaveTheTrack()
     {
         trackRepository.save(track);
         Track fetchUser = trackRepository.findById(track.getId()).get();
@@ -66,7 +68,7 @@ public class TrackRepositoryTest {
     }
 
     @Test
-    public void testSaveUserFailure()
+    public void givenMethodNotEqualsTogivenInput()
     {
         Track testUser = new Track(22,"welcome","hellooooooooo");
         trackRepository.save(track);
@@ -75,7 +77,7 @@ public class TrackRepositoryTest {
     }
 
     @Test
-    public void testGetAllUser() {
+    public void givenMethodShouldSaveTheTrack() {
         Track u = new Track(10, "harry", "piiii");
         Track u1 = new Track(103, "welcome", "hjjjjj");
         trackRepository.save(u);
@@ -85,7 +87,7 @@ public class TrackRepositoryTest {
         Assert.assertEquals("dj", list.get(0).getName());
     }
     @Test
-    public void getAllTracktest()
+    public void givenMethodShouldReturnTheAllTrack()
     {
         Track track1=new Track(10,"vadipula","welcome");
         Track track2 = new Track(103, "welcome", "hjjjjj");
