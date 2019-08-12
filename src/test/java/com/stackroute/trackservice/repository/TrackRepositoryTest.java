@@ -109,6 +109,22 @@ public class TrackRepositoryTest {
     }
 
 
+    @Test
+    //deleting the track
+    public void givenTrackAndTrackIdShouldDeleteTrack() {
+        Track testTrack = new Track(111,"baby of", "uTrun");
+        trackRepository.delete(testTrack);
+        assertFalse(trackRepository.existsById(testTrack.getId()));
+
+    }
+    @Test
+    public void givenTrackShouldReturnUpdateOfTheTrackService()
+    {
+        Track testTrack = new Track(111,"baby of", "uTrun");
+        trackRepository.save(testTrack);
+        assertFalse(trackRepository.existsById(testTrack.getId()));
+    }
+
 
 
     }
