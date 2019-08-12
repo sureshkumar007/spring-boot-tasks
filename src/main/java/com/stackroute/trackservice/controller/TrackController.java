@@ -32,7 +32,8 @@ public class TrackController {
     {
 
             Track savedTrack = trackService.saveTrack(track);
-            return new ResponseEntity<>(savedTrack, HttpStatus.OK);
+            //http status displayed the created page
+            return new ResponseEntity<>(savedTrack, HttpStatus.CREATED);
 
 
         }
