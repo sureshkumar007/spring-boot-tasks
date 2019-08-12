@@ -51,7 +51,8 @@ public class TrackRepositoryTest {
     @After
     public void tearDown() {
 
-        trackRepository.deleteAll();
+        //TrackRepository is assigned to null
+        trackRepository=null;
     }
 
 
