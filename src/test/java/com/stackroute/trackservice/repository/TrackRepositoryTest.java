@@ -36,7 +36,7 @@ import static org.mockito.Mockito.when;
 public class TrackRepositoryTest {
     @Autowired
     private TrackRepository trackRepository;
-    Track track;
+   private Track track;
 
     @Before
     public void setUp() {
