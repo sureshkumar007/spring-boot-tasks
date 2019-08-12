@@ -1,5 +1,6 @@
 package com.stackroute.trackservice.seedata;
 
+
 import com.stackroute.trackservice.domain.Track;
 import com.stackroute.trackservice.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,14 @@ public class ApplicationListerSeeData implements ApplicationListener<ContextRefr
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent)
     {
-        Track track1=new Track(11,"dj","vadepula");
-        Track track2=new Track(12,"ak","fasak");
-        Track track3=new Track(13,"pk","only once");
+//        Track track1=new Track(11,"dj","vadepula");
+//        Track track2=new Track(12,"ak","fasak");
+//        Track track3=new Track(13,"pk","only once");
+//
         try {
-            trackService.saveTrack(track1);
-            trackService.saveTrack(track2);
-            trackService.saveTrack(track3);
+//            trackService.saveTrack(track1);
+//            trackService.saveTrack(track2);
+//            trackService.saveTrack(track3);
         }
         catch(Exception e)
         {

@@ -28,10 +28,10 @@ public class TrackServiceImpl implements TrackService
     //Used to override the parent class method, and to notify the mistakes.
     public Track saveTrack(Track track) throws TrackAlreadyExistsException
     {
-        if(trackRepository.existsById(track.getId()))
-        {
-            throw new TrackAlreadyExistsException("existed");
-        }
+//        if(trackRepository.existsById(ge))
+//        {
+//            throw new TrackAlreadyExistsException("existed");
+//        }
         Track savedTrack = trackRepository.save(track);
         return savedTrack;
     }
@@ -76,8 +76,8 @@ public class TrackServiceImpl implements TrackService
         if(trackRepository.existsById(id))
         {
             Track trackBeforeUpdate = trackRepository.findById(id).get();
-            track.setComments(track.getComments());
-            track.setName(track.getName());
+//            track.setComments(track.getComments());
+//            track.setName(track.getName());
             return trackRepository.save(track);
         }
         throw new TrackNotFoundException("update failed");
