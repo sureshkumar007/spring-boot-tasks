@@ -45,6 +45,12 @@ public class TrackServiceTest {
         list = new ArrayList<>();
         list.add(track);
     }
+
+    @After
+    public void tearDown()
+    {
+        trackService=null;
+    }
     @Test(expected = TrackAlreadyExistsException.class)
     public void saveUserTestFailure() throws TrackAlreadyExistsException {
         when(trackRepository.existsById(track.getId())).thenReturn(true);
