@@ -17,11 +17,13 @@ public class GlobalException extends ResponseEntityExceptionHandler
     @ExceptionHandler(TrackAlreadyExistsException.class)
     public ResponseEntity<Object> trackAlready(final TrackAlreadyExistsException ex1)
     {
-        return new ResponseEntity<>(ex1.getMessage(),HttpStatus.OK);
+        //HttpStatus displays conflict status.......
+        return new ResponseEntity<>(ex1.getMessage(),HttpStatus.CONFLICT);
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> Expection(final Exception ex3)
     {
+        //Httpstatus 500 page error
         return new ResponseEntity<>(ex3.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
