@@ -13,7 +13,8 @@ public interface TrackService
     public Track saveTrack(Track track) throws TrackAlreadyExistsException;
     public Track getTrackById(int id) throws TrackNotFoundException;
     public List<Track> getAllTracks();
-    public Optional<Track> deleteTrackById(int id) throws TrackNotFoundException;
+   public Optional<Track> deleteTrackById(int id) throws TrackNotFoundException;
+//public Track deleteTrackById(int id) throws TrackNotFoundException;
     public Track updateTrack(int id, Track track) throws TrackNotFoundException;
     public List<Track> getByName(String name) throws TrackNotFoundException;
 
