@@ -22,16 +22,16 @@ import static org.mockito.Mockito.when;
 
 
 public class TrackServiceTest {
-    Track track;
+    private Track track;
 
     //Create a mock for UserRepository
     @Mock
-    TrackRepository trackRepository;
+    private TrackRepository trackRepository;
 
     //Inject the mocks as dependencies into UserServiceImpl
     @InjectMocks
-    TrackServiceImpl trackService;
-    List<Track> list = null;
+   private TrackServiceImpl trackService;
+   private List<Track> list = null;
 
 
     @Before
@@ -97,6 +97,16 @@ public class TrackServiceTest {
         when(trackRepository.findAll()).thenReturn(list);
         List<Track> userlist = trackService.getAllTracks();
         Assert.assertEquals(list, userlist);
+    }
+
+
+    @Test(expected = TrackNotFoundException.class)
+    public void givenTrackIdShouldReturnException() throws TrackNotFoundException, Exception {
+        Track savedTrack = trackService.getTrackById(track.getId());
+        //delete track by id
+        trackService.deleteTrackById(track.getId());
+        //updatetrack
+        trackService.updateTrack(track.getId(),track);
     }
 
 
